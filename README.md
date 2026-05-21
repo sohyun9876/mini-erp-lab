@@ -1,48 +1,108 @@
-# 📁 mini-erp-core
+# mini-erp-lab
 
-> **ERP의 핵심 프로세스 학습 및 비즈니스 로직 구현 프로젝트**
->
-> 단순히 기능을 개발하는 것을 넘어, 기업의 자원 관리 흐름(Flow)을 깊이 있게 이해하고 데이터 무결성을 보장하는 시스템을 설계하는 것을 목표로 합니다.
+> ERP 도메인 학습 + 직접 구현해보는 스터디 레포
 
----
-
-## 🎯 Project Goals
-* **ERP 비즈니스 도메인 이해**: 회계, 인사, 물류 등 복합적인 비즈니스 로직 학습
-* **DB 정규화 및 설계**: 복잡한 관계형 데이터베이스 구조 설계 역량 강화
-* **확장 가능한 아키텍처**: 기능 모듈화(Modularization)를 통한 유지보수 용이성 확보
-
-## 🛠 Tech Stack
-* **Frontend**: React / TypeScript / Tailwind CSS
-* **Backend**: Node.js (NestJS)
-* **Database**: PostgreSQL
-* **Tools**: GitHub Actions, Docker, Swagger
-*(※ 본인이 사용하는 스택에 맞춰 수정하세요)*
+ERP/SAP 이직을 목표로, 이론 학습과 실제 구현을 병행합니다.
+`study/`에서 개념을 정리하고, `mini-erp/`에서 코드로 구현합니다.
 
 ---
 
-## 🗓 Roadmap & Progress
-학습과 개발 단계를 나누어 관리합니다.
+## 배경
 
-### Phase 1: 기초 설계 및 공통 모듈 (진행 중 🏃)
-- [ ] ERP 도메인 기초 이론 학습 및 정리
-- [ ] 마스터 데이터(사용자, 권한, 거래처) 테이블 설계
-- [ ] 공통 코드 관리 시스템 구축
+- 현 직무: 중견기업 개발팀 2년차 (기획·POC 개발 → 외주 인계, 기능 테스트)
+- 목표: ERP/SAP 직군 이직
+- 전략: SAP 직행 대신 ERP 도메인 이해를 먼저 쌓고, 이후 SAP로 전환
 
-### Phase 2: 핵심 모듈 개발 (대기 🗓)
-- [ ] **인사/급여**: 사원 관리 및 급여 정산 로직
-- [ ] **재고/물류**: 입출고 관리 및 재고 실사 프로세스
-- [ ] **회계**: 전표 입력 및 기본 재무제표 생성
+---
 
-### Phase 3: 고도화 (대기 🗓)
+## 폴더 구조
+
+```
+mini-erp-lab/
+├── study/                        # ERP 이론 & 도메인 학습 정리
+│   ├── 01-erp-basics/           # ERP 개요, 역사, 핵심 개념
+│   ├── 02-domain/               # 도메인별 학습 노트
+│   │   ├── accounting/         # 회계 (전표, 원장, 재무제표)
+│   │   ├── hr/                 # 인사/급여
+│   │   ├── inventory/          # 재고/물류 (입출고, 실사)
+│   │   ├── procurement/        # 구매/발주
+│   │   └── sales/              # 영업/수주
+│   ├── 03-process-flows/        # 업무 프로세스 흐름도 정리
+│   └── 04-sap-notes/           # SAP 전환 시 활용할 학습 노트
+│
+└── mini-erp/                     # 실제 구현 프로젝트
+    ├── docs/                     # 설계 문서
+    │   ├── erd/                 # 데이터베이스 ERD
+    │   ├── api/                 # API 명세
+    │   └── wireframes/          # 화면 설계
+    ├── backend/                  # Java Spring Boot 백엔드
+    │   └── src/
+    │       ├── main/java/com/minierp/
+    │       │   ├── common/      # 인증, 공통 유틸, 예외 처리
+    │       │   ├── master/      # 마스터 데이터 (사용자, 조직, 거래처)
+    │       │   ├── accounting/  # 회계 모듈
+    │       │   ├── hr/          # 인사 모듈
+    │       │   ├── inventory/   # 재고 모듈
+    │       │   ├── procurement/ # 구매 모듈
+    │       │   └── sales/       # 영업 모듈
+    │       ├── main/resources/
+    │       │   └── mapper/      # MyBatis XML 매퍼
+    │       └── test/            # 테스트 코드
+    ├── frontend/                 # React 프론트엔드
+    │   └── src/
+    │       ├── components/      # 공통 컴포넌트
+    │       ├── pages/           # 모듈별 페이지
+    │       ├── store/           # 상태 관리
+    │       └── api/             # API 클라이언트
+    └── scripts/                  # DB 초기화, seed 데이터 스크립트
+```
+
+---
+
+## Tech Stack
+
+| 영역 | 기술 |
+|------|------|
+| Frontend | React, TypeScript, Tailwind CSS |
+| Backend | Java, Spring Boot |
+| Database | Oracle SQL |
+| DB Mapper | MyBatis |
+| Infra | Docker, GitHub Actions |
+| Docs | Swagger |
+
+---
+
+## Roadmap
+
+### Phase 1 — ERP 기초 & 마스터 데이터 (진행 중)
+- [ ] ERP 개요 및 모듈 구조 학습 (`study/01-erp-basics/`)
+- [ ] 핵심 비즈니스 프로세스 흐름 정리 (`study/03-process-flows/`)
+- [ ] 사용자 / 조직 / 거래처 마스터 데이터 설계 및 구현
+- [ ] 공통 코드 관리, 인증/권한 구조 구축
+
+### Phase 2 — 핵심 모듈 구현
+- [ ] **인사/급여**: 사원 관리, 부서 배치, 급여 정산 로직
+- [ ] **재고/물류**: 입출고 처리, 재고 실사, 로케이션 관리
+- [ ] **구매**: 발주 → 입고 → 매입 전표 흐름
+- [ ] **영업**: 수주 → 출고 → 매출 전표 흐름
+- [ ] **회계**: 전표 입력, 원장, 기본 재무제표
+
+### Phase 3 — 고도화
+- [ ] 모듈 간 연계 흐름 완성 (구매 입고 → 재고 자동 반영 → 회계 전표 생성)
 - [ ] 데이터 시각화 대시보드
-- [ ] 엑셀 업로드/다운로드 대량 데이터 처리
+- [ ] 엑셀 업로드/다운로드 (대량 데이터 처리)
+- [ ] SAP 학습 노트 연계 (`study/04-sap-notes/`)
 
 ---
 
-## 📂 Project Structure
-```text
-/docs            # ERP 이론 및 프로세스 분석 문서
-/src             # 프로젝트 소스 코드
-  ├── backend    # Server-side logic
-  └── frontend   # Client-side UI
-/research        # 벤치마킹 및 기술 스택 리서치
+## 학습 방향
+
+ERP의 핵심은 **부서 간 데이터 통합**입니다.
+단순히 CRUD를 구현하는 것이 아니라, 아래 흐름이 코드 레벨에서 연결되는 것을 목표로 합니다.
+
+```
+구매 발주 → 입고 처리 → 재고 증가 → 매입 전표 자동 생성 → 원장 반영
+영업 수주 → 출고 처리 → 재고 감소 → 매출 전표 자동 생성 → 원장 반영
+```
+
+각 모듈을 독립적으로 구현하되, 연계 시점에서 **트랜잭션 무결성**을 보장하는 구조를 설계합니다.
